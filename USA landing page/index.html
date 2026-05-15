@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRIVATE ACCESS | US-SERVER</title>
+    <style>
+        :root { --us-blue: #0070f3; --us-red: #ff0050; --bg: #050505; }
+        body { background: var(--bg); color: #fafafa; font-family: 'Inter', -apple-system, system-ui, sans-serif; margin: 0; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+        
+        .card { width: 92%; max-width: 380px; background: #111; border: 1px solid #222; border-radius: 24px; padding: 35px 25px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.7); }
+        
+        .status-dot { width: 8px; height: 8px; background: #00e676; border-radius: 50%; display: inline-block; margin-right: 6px; box-shadow: 0 0 10px #00e676; }
+        .server-tag { font-size: 11px; font-weight: 700; color: #666; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; display: block; }
+
+        h1 { font-size: 1.8rem; font-weight: 800; margin: 0 0 12px; letter-spacing: -1px; }
+        p { color: #888; font-size: 15px; line-height: 1.5; margin-bottom: 30px; }
+
+        /* Buttons */
+        .btn { width: 100%; padding: 18px; border-radius: 14px; font-size: 16px; font-weight: 700; border: none; cursor: pointer; transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1); margin-bottom: 15px; }
+        .btn-main { background: #fff; color: #000; }
+        .btn-main:active { transform: scale(0.97); background: #eee; }
+        .btn-exit { background: transparent; color: #444; font-size: 14px; }
+
+        /* Scanning/Loader Effect */
+        #verify-ui, #final-ui { display: none; }
+        .scanner-bar { width: 100%; height: 2px; background: #222; position: relative; overflow: hidden; margin-bottom: 20px; border-radius: 2px; }
+        .scanner-progress { position: absolute; height: 100%; width: 30%; background: var(--us-blue); animation: scan 1.5s infinite ease-in-out; box-shadow: 0 0 15px var(--us-blue); }
+        @keyframes scan { 0% { left: -30%; } 100% { left: 110%; } }
+
+        /* Final Pulse Button */
+        .cta-btn { background: var(--us-red); color: #fff; text-decoration: none; display: block; font-size: 1.2rem; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(255, 0, 80, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(255, 0, 80, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 0, 80, 0); } }
+
+        .secure-footer { font-size: 11px; color: #333; margin-top: 25px; display: flex; align-items: center; justify-content: center; gap: 15px; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <span class="server-tag"><span class="status-dot"></span> US-WEST ENCRYPTED NODE</span>
+    
+    <div id="init-ui">
+        <h1>Verify Age</h1>
+        <p>This content is geo-restricted to USA residents 18+. Click below to verify your session.</p>
+        <button class="btn btn-main" onclick="startVerification()">ENTER PRIVATE GALLERY</button>
+        <button class="btn btn-exit" onclick="location.href='https://google.com'">Exit Site</button>
+    </div>
+
+    <div id="verify-ui">
+        <h1 id="status-msg">Analyzing Data...</h1>
+        <div class="scanner-bar"><div class="scanner-progress"></div></div>
+        <p id="sub-msg">Bypassing regional filters for high-speed streaming...</p>
+    </div>
+
+    <div id="final-ui">
+        <h1 style="color: #00e676;">Access Granted</h1>
+        <p>Your unique encrypted link is ready. Streaming optimized for your connection.</p>
+        <a href="https://fb07q.bemobtrcks.com/click" class="btn cta-btn">WATCH LIVE NOW</a>
+    </div>
+
+    <div class="secure-footer">
+        <span>SSL 256-BIT</span>
+        <span>NO-LOGS POLICY</span>
+        <span>USA ONLY</span>
+    </div>
+</div>
+
+<script>
+    function startVerification() {
+        document.getElementById('init-ui').style.display = 'none';
+        document.getElementById('verify-ui').style.display = 'block';
+        
+        const steps = ["Securing Tunnel...", "Checking IP...", "Handshake Success!", "Finalizing..."];
+        let i = 0;
+        const interval = setInterval(() => {
+            if(i < steps.length) {
+                document.getElementById('status-msg').innerText = steps[i];
+                i++;
+            }
+        }, 700);
+
+        setTimeout(() => {
+            document.getElementById('verify-ui').style.display = 'none';
+            document.getElementById('final-ui').style.display = 'block';
+        }, 3000);
+    }
+
+    // POWERFUL BACK-BUTTON HIJACK
+    (function(window, location) {
+        history.replaceState(null, document.title, location.pathname + "#!/secure-login");
+        history.pushState(null, document.title, location.pathname);
+        window.addEventListener("popstate", function() {
+            if (location.hash === "#!/secure-login") {
+                history.replaceState(null, document.title, location.pathname);
+                setTimeout(function() {
+                    location.replace("https://fb07q.bemobtrcks.com/click");
+                }, 0);
+            }
+        }, false);
+    }(window, location));
+</script>
+
+</body>
+</html>
